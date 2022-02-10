@@ -47,6 +47,12 @@ public class ProductServiceImpl implements ProductService{
             specification = specification.and(ProductSpecification.maxPrice(maxPriceFilter.get()));
         }
 
+        if(sort != null && !(sort.isEmpty())) {
+            return productRepository.findAll(specification, PageRequest.of(page, size, Sort.by(sort)))
+                    .map(ProductServiceImpl::convertToDto);
+
+        } else
+
         return productRepository.findAll(specification, PageRequest.of(page, size, Sort.by("id")))
                 .map(ProductServiceImpl::convertToDto);
     }
