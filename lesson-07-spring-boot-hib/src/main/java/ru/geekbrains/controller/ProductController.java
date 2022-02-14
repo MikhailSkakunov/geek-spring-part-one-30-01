@@ -28,10 +28,11 @@ public class ProductController {
     private final CategoryRepository categoryRepository;
 
 
+
     @Autowired
     public ProductController(ProductService productService, CategoryRepository categoryRepository) {
-        this.productService = productService;
 
+        this.productService = productService;
         this.categoryRepository = categoryRepository;
     }
 
