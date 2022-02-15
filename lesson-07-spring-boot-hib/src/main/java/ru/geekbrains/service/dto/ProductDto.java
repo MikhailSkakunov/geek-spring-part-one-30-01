@@ -1,37 +1,37 @@
-package ru.geekbrains.persist;
+package ru.geekbrains.service.dto;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-public class Product {
+public class ProductDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank
     private String name;
 
-    @Column
+    @NotBlank
     private String description;
 
-    @Column
+    @PositiveOrZero
     private BigDecimal price;
 
-    @ManyToOne
-    private Category category;
+    private Long categoryId;
 
-    public Product() {
+    private String categoryName;
+
+    public ProductDto() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price, Category category) {
+    public ProductDto(Long id, String name, String description, BigDecimal price,
+                      Long categoryId, String categoryName) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.category = category;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public Long getId() {
@@ -66,11 +66,19 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

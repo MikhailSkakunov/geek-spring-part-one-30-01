@@ -10,11 +10,11 @@ public final class ProductSpecification {
         return (root, query, builder) -> builder.like(root.get("name"), "%" + pattern + "%");
     }
 
-    public static Specification<Product> minPriceFilter(BigDecimal minPrice) {
+    public static Specification<Product> minPrice(BigDecimal minPrice) {
         return (root, query, builder) -> builder.ge(root.get("price"), minPrice);
     }
 
-    public static Specification<Product> maxPriceFilter(BigDecimal maxPrice) {
+    public static Specification<Product> maxPrice(BigDecimal maxPrice) {
         return (root, query, builder) -> builder.le(root.get("price"), maxPrice);
     }
 }
